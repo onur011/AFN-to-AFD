@@ -1,0 +1,62 @@
+    Veis Onur Sener 
+        CB 336
+
+        Tema 2 - LFA
+
+        Initial, se citesc numarul de stari si starile finale din fisierul de
+    intrare. Dupa aceea, se ia fiecare linie in parte si se genereaza un
+    dictionar de dictionare delta_nfa[current_state][symbol] = next_states
+    si alfabetul automatului.
+
+        Se calculeaza epsilon pentru fiecare stare din automat.
+
+        Functia det_epsilon(delta_nfa,s):
+        - In cazul in care starea a fost deja vizitata, se iese din functie
+        - Se adauga starea ca fiind vizitata
+        - Daca starea nu are salturi catre alta stare, se opreste functia
+        - Se parcurg toate drumurile starii respective
+        - Daca se gaseste cel putin un drum pe epsilon, se apeleaza
+        recursiv functia pentru starile urmatoare.
+        - Rezultatul functie este memorat in lista E_one_state
+
+        Se incepe generarea DFA cu starile determinate de epsilonul
+    starii initiale.
+
+        Se ia cate o stare din dfa_states, se verifica daca nu a mai fost 
+        selectata.
+    
+        Se selecteaza fiecare caracter din alfabet.
+
+        Se selecteaza fiecare stare, din starea curenta, daca aceasta 
+    este o stare compusa.
+
+        Se verifica daca starea are drumuri care pleaca din ea.
+
+        Se extrag drumurile pentru starea respectiva si pentru fiecare drum
+    se memoreaza epsilonul starii in care se ajunge, pe simbolul respectiv.
+
+        Dupa ce se executa codul de mai sus, luandu-se fiecare stare din
+    starea curenta, se memoreaza starile la care se ajunge pe simbolul ales.
+
+        De asemenea, starile memorate anterior sunt adaugate in dfa_states,
+    urmand sa fie prelucrate si ele.
+
+        Dupa ce s-au parcurs toate simbolurile, se memoreaza noua stare
+    in dfa.
+
+        Algoritmul este reluat pana cand dfa_states este vida.
+
+        De asemenea, se observa ca in cazul in care o stare nu are drum pe un
+    simbol, algortimul va genera automat calea catre starea '' (sirul vid),
+    aceastea reprezentand sink state.
+
+        Se genereaza starile finale ale dfa, luandu-se fiecare stare a lui
+    si verificand daca ea contine cel putin o stare finala a nfa.
+
+        Se scriu in fisier numarul de stari si starile finale ale dfa.
+
+        Se scrie fiecare stare cu simbolul si starile urmatoare.
+
+        In selected_states se regasesc toate starile dfa sub forma de string.
+        Pentru o vizualizare mai buna, se codifica fiecare string
+    cu indicele din lista selected_states.
